@@ -1,0 +1,20 @@
+<svg width="400" height="600" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="600" fill="#111111"/>
+  
+  <!-- Head -->
+  <circle cx="200" cy="180" r="80" fill="#e3342f" opacity="0.3"/>
+  
+  <!-- Body silhouette -->
+  <path d="M100 450C90 420 120 380 200 380C280 380 310 420 300 450C290 480 280 500 250 520C220 540 180 540 150 520C120 500 110 480 100 450Z" fill="#e3342f" opacity="0.2"/>
+  
+  <!-- Placeholder text -->
+  <text x="200" y="320" text-anchor="middle" fill="#e3342f" font-family="Arial" font-size="24" opacity="0.5">AVATAR</text>
+  <text x="200" y="350" text-anchor="middle" fill="#e3342f" font-family="Arial" font-size="16" opacity="0.4">PLACEHOLDER</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="150" cy="120" r="3" fill="#e3342f" opacity="0.6"/>
+  <circle cx="250" cy="140" r="2" fill="#e3342f" opacity="0.4"/>
+  <circle cx="320" cy="200" r="4" fill="#e3342f" opacity="0.3"/>
+  <circle cx="80" cy="250" r="2" fill="#e3342f" opacity="0.5"/>
+</svg>
