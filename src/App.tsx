@@ -1,15 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import type { Route } from "./+types/home";
-import DirtBikeGame from "../components/DirtBikeGame";
-
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Daddy Bruce - Portfolio" },
-    { name: "description", content: "Deaf creator, software engineer, VRChat regular. Building Yapper — a better way to connect." },
-    { name: "keywords", content: "Daddy Bruce, software engineer, VRChat, Yapper, deaf creator, portfolio" },
-    { name: "theme-color", content: "#000000" },
-  ];
-}
+import DirtBikeGame from "./components/DirtBikeGame";
 
 // Social media links data
 const socialLinks = [
@@ -54,7 +44,7 @@ function useOnScreen(ref: React.RefObject<HTMLElement>, threshold = 0.3) {
   return isIntersecting;
 }
 
-export default function Home() {
+export default function App() {
   // Refs for sections to observe
   const introRef = useRef<HTMLElement>(null);
   const linksRef = useRef<HTMLElement>(null);
@@ -184,8 +174,6 @@ export default function Home() {
       dividers.forEach(div => observer.unobserve(div));
     };
   }, []);
-
-
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
@@ -364,51 +352,11 @@ export default function Home() {
             </a>
           ))}
         </nav>
-
-        {/* Arrow to Game Section - Fixed to bottom */}
-        <div className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center transition-all duration-700 ease-out delay-600 ${
-          linksVisible 
-            ? "opacity-100 translate-y-0" 
-            : "opacity-0 translate-y-4"
-        }`}>
-          <button
-            onClick={() => {
-              const gameSection = document.querySelector('[aria-label*="dirt bike game"]')?.closest('section');
-              gameSection?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            aria-label="Scroll down to play the dirt bike mini-game"
-            className="group flex flex-col items-center text-red-accent hover:text-red-hover focus:text-red-hover focus:outline-none focus:ring-2 focus:ring-red-accent focus:ring-opacity-50 rounded-lg p-3 transition-colors duration-300"
-          >
-            {/* Downward Arrow */}
-            <svg
-              className="w-8 h-8 md:w-10 md:h-10 animate-bounce group-hover:animate-pulse group-focus:animate-pulse mb-2"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                clipRule="evenodd"
-              />
-            </svg>
-            
-            {/* Label */}
-            <span className="text-white font-bold text-lg md:text-xl font-sans tracking-wide group-hover:text-gray-200 transition-colors duration-300">
-              Mini Game!
-            </span>
-            
-            {/* Subtitle */}
-            <span className="text-gray-400 text-xs md:text-sm font-sans mt-1 opacity-75 group-hover:opacity-100 transition-opacity duration-300">
-              🏍️ Try my dirt bike jump game
-            </span>
-          </button>
-        </div>
       </section>
 
-      {/* Game Section */}
+      {/* Dirt Bike Game Section */}
       <section
+        id="game"
         ref={gameRef}
         className={`relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-12 transition-all duration-700 ease-out transform ${
           gameVisible 
@@ -418,6 +366,7 @@ export default function Home() {
       >
         {/* Section Divider */}
         <div className="section-divider w-full max-w-4xl"></div>
+        
         {/* Game Title */}
         <div className={`mb-12 transition-all duration-700 ease-out transform delay-200 ${
           gameVisible 
@@ -427,13 +376,12 @@ export default function Home() {
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-red-accent text-center tracking-tight mb-4">
             Play My Game
           </h2>
-          <p className="font-sans text-base md:text-lg text-gray-300 text-center max-w-2xl">
-            I love dirt biking in real life, so I built this little game! 
-            See how many obstacles you can jump over. Use spacebar or click to jump!
+          <p className="font-sans text-lg text-gray-300 text-center max-w-2xl mx-auto">
+            I built this dirt bike game for fun. Use arrow keys to control the bike and try not to crash!
           </p>
         </div>
 
-        {/* Game Component */}
+        {/* Game Container */}
         <div className={`transition-all duration-700 ease-out transform delay-400 ${
           gameVisible 
             ? "opacity-100 translate-y-0" 
@@ -442,11 +390,6 @@ export default function Home() {
           <DirtBikeGame />
         </div>
       </section>
-
-      {/* Hidden footer for screen readers */}
-      <footer className="sr-only">
-        <p>Portfolio website of Daddy Bruce, software engineer and content creator</p>
-      </footer>
     </div>
   );
 }
